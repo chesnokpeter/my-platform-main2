@@ -38,7 +38,7 @@ const Hero = () => {
               <h1 className="mt-[10px] text-2xl s:text-[28px] lg:text-[40px] font-bold font-helvetica leading-[130%] uppercase text-main-white max-w-[570px] lg:max-w-[450px] xxl:max-w-full">
                 Автоматизация передачи данных
                 {"  "}
-                <span className="text-main-blue bg-white pt-[4px] xs:pt-0 pb-[2px] px-[3px]">
+                <span className="text-main-blue bg-white pt-[4px] xs:pt-0 pb-[2px] px-[3px] shrink_text">
                   в АЦБПДП ЕГИС ОТБ
                 </span>{" "}
                 через чат-бот в Телеграм

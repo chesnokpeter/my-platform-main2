@@ -180,6 +180,11 @@ body {
       "c9"
       "c10";
   }
+
+  .shrink_text {
+    white-space: nowrap;
+  }
+
 }
 
 .unified-banner {

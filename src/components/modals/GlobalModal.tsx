@@ -37,8 +37,8 @@ export const GlobalModal = () => {
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
             <div className="mb-10">
-              <h2 className="font-helvetica leading-[130%] text-lg s:text-xl lg:text-2xl font-bold max-w-[370px] uppercase mr-10">
-                Заполните форму <br /> и начните свой путь <br /> к автоматизации бизнеса{" "}
+              <h2 className="font-helvetica leading-[130%] text-lg s:text-xl lg:text-2xl font-bold max-w-[350px] uppercase mr-10">
+                Заполните форму и начните свой путь к автоматизации бизнеса{" "}
               </h2>
               <button
                 onClick={close}

@@ -13,21 +13,21 @@ import SliderSection from "@/components/sections/SliderSection";
 import PainSection from "@/components/sections/PainSection";
 
 export default function Home() {
-  return (
-    <>
-      <Hero />
-      <PainSection />
-      <FeaturesSection />
-      <SaveYourBusinessSection />
-      <GetInTouch />
-      <UnifiedPlatformSection />
-      <WhyWeSection />
-      <HowItWorksSection />
-      <SmartAccessSection />
-      <MyPlatformSection />
-      <SliderSection />
-      <TryOurServices />
-      <FAQSection />
-    </>
-  );
+    return (
+        <>
+            <Hero />
+            <PainSection />
+            <FeaturesSection />
+            <SaveYourBusinessSection />
+            <GetInTouch />
+            <UnifiedPlatformSection />
+            <WhyWeSection />
+            <HowItWorksSection />
+            <SmartAccessSection />
+            <MyPlatformSection />
+            <SliderSection />
+            <TryOurServices />
+            <FAQSection />
+        </>
+    );
 }

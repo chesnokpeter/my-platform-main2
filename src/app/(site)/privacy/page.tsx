@@ -8,7 +8,7 @@ const page = () => {
           href="/"
           className="flex items-center gap-[10px] font-helvetica text-base font-normal"
         >
-        <span className="rotate-180">→</span>
+          <span className="rotate-180">→</span>
           Назад
         </Link>
 

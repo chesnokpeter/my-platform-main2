@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Input from "../ui/Input";
+import { useRouter } from "next/navigation";
 
 type GlobalFormProps = {
   option?: boolean;
@@ -18,6 +19,7 @@ const GlobalForm = ({
   children,
   submitText,
 }: GlobalFormProps) => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [busOption, setBusOption] = useState<string | null>(null);
@@ -99,17 +101,30 @@ const GlobalForm = ({
     try {
       setLoading(true);
 
+      // Но если /api/form делает что-то другое (например, пишет в базу), оставь его.
       await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
+      // 2. Формируем параметры для страницы спасибо
+      const params = new URLSearchParams({
+        name: name,
+        tel: phone,
+        url: window.location.href // Передаем текущий URL, откуда пришла заявка
+      });
+
+      router.push(`/thank-you?${params.toString()}`);
+
       setName("");
       setPhone("");
       setBusOption(null);
       setNameValid(false);
       setPhoneValid(false);
+
+    } catch (error) {
+      console.error("Ошибка при отправке:", error);
     } finally {
       setLoading(false);
     }
@@ -136,20 +151,21 @@ const GlobalForm = ({
 
       {option && (
         <div>
+          {/* TITLE */}
           <div
-            className={`font-helvetica text-sm font-light ${
-              busError
+            className={`font-helvetica text-sm font-light ${busError
                 ? "text-input-red"
                 : mix
-                ? "text-main-dark"
-                : light
-                ? "text-main-dark"
-                : "text-main-white"
-            }`}
+                  ? "text-main-dark"
+                  : light
+                    ? "text-main-dark"
+                    : "text-main-white"
+              }`}
           >
             Количество автобусов в парке
           </div>
 
+          {/* OPTIONS */}
           <div className="mt-[10px] flex gap-[10px]">
             {["1", "2-5", ">5"].map((item) => {
               const isActive = busOption === item;
@@ -159,12 +175,12 @@ const GlobalForm = ({
                   ? "bg-main-dark text-white"
                   : "bg-main-light-blue text-main-dark"
                 : light
-                ? isActive
-                  ? "bg-main-dark text-white"
-                  : "bg-main-white text-main-dark"
-                : isActive
-                ? "bg-main-dark text-white"
-                : "bg-main-light-blue text-main-dark";
+                  ? isActive
+                    ? "bg-main-dark text-white"
+                    : "bg-main-white text-main-dark"
+                  : isActive
+                    ? "bg-main-dark text-white"
+                    : "bg-main-light-blue text-main-dark";
 
               return (
                 <button
@@ -185,10 +201,11 @@ const GlobalForm = ({
       )}
 
       {children({ loading })}
+
+      {/* POLICY */}
       <div
-        className={`max-w-[475px] mx-auto font-helvetica text-xs xxl:text-base font-light text-center ${
-          mix ? "text-main-gray" : light ? "text-main-dark" : "text-main-white"
-        }`}
+        className={`max-w-[475px] mx-auto font-helvetica text-xs xxl:text-base font-light text-center ${mix ? "text-main-gray" : light ? "text-main-dark" : "text-main-white"
+          }`}
       >
         Нажимая на кнопку “<span>{submitText}</span>” вы соглашаетесь с{" "}
         <a href="#" className="underline">
