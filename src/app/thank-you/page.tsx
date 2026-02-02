@@ -30,26 +30,6 @@ function ThankYouContent() {
             .match(/.{1,4}/g)
             ?.join("-");
 
-        const airtableOptions = {
-            method: "POST",
-            headers: {
-                Authorization:
-                    "Bearer patTOrKh0vOhyu7Lj.6250333f99e040948fef4efab25c41b12bdf81c59b020cd9b325feea8a34e54e",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                records: [
-                    {
-                        fields: {
-                            Имя: name,
-                            Телефон: tel,
-                            uuid: uuid,
-                        },
-                    },
-                ],
-            }),
-        };
-
         const telegramOptions = {
             method: "POST",
             headers: {
@@ -74,7 +54,6 @@ function ThankYouContent() {
 
         try {
             await Promise.all([
-                fetch("https://api.airtable.com/v0/appJPIX4PgYzUxeAZ/CRM", airtableOptions),
                 fetch(
                     `https://api.telegram.org/bot7726289006:AAG4faIgb8uaHScUmKbsyIAU6nINDAxgXRk/sendMessage`,
                     telegramOptions
